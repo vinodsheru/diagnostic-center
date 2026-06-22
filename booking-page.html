@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Page - MediAxis Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root,[data-theme="light"]{--bg:#f7f6f2;--surface:#f9f8f5;--surface-2:#f3f0ec;--text:#28251d;--muted:#66645f;--border:#d4d1ca;--primary:#01696f;--primary-soft:#cedcd8;--radius:16px;--font-body:'Inter',sans-serif;--font-display:'Instrument Serif',serif}
+    [data-theme="dark"]{--bg:#171614;--surface:#1c1b19;--surface-2:#242320;--text:#e1dfdb;--muted:#b4b1aa;--border:#393836;--primary:#4f98a3;--primary-soft:#2a393c}
+    *{box-sizing:border-box;margin:0;padding:0} body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6}
+    a{text-decoration:none;color:inherit} button,input,select,textarea{font:inherit} .container{max-width:1120px;margin:auto;padding:24px}
+    .topbar{display:flex;justify-content:space-between;gap:12px;padding:18px 24px;border-bottom:1px solid var(--border)} .nav{display:flex;gap:10px;flex-wrap:wrap}
+    .nav a,.nav button{padding:12px 16px;border:1px solid var(--border);border-radius:999px;background:var(--surface);min-height:44px}
+    .split{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;margin-top:26px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+    h1{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.4rem);line-height:.95;margin-bottom:10px}
+    .muted{color:var(--muted)} .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px}
+    .field{display:grid;gap:8px}.field.full{grid-column:1/-1} label{font-weight:700;font-size:.95rem}
+    input,select,textarea{width:100%;min-height:48px;border-radius:14px;border:1px solid var(--border);background:var(--surface-2);padding:14px}
+    textarea{min-height:110px;resize:vertical}
+    .summary-item{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--border)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:999px;min-height:46px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:var(--primary);color:#fff}.badge{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:.76rem;font-weight:700;background:var(--primary-soft);color:var(--primary)}
+    @media (max-width:900px){.split,.form-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a href="index.html">Landing</a>
+      <a href="booking-page.html">Booking</a>
+      <a href="reports-page.html">Reports</a>
+      <a href="admin-dashboard.html">Admin Dashboard</a>
+    </nav>
+    <button id="themeToggle">Theme</button>
+  </header>
+
+  <main class="container">
+    <div class="split">
+      <section class="card">
+        <span class="badge">Payments disabled in demo</span>
+        <h1>Book appointment</h1>
+        <p class="muted">Selected center and test are prefilled from the landing page.</p>
+
+        <form class="form-grid" id="bookingForm">
+          <div class="field"><label>Diagnostic center</label><input id="centerName" readonly></div>
+          <div class="field"><label>Location</label><input id="centerLocation" readonly></div>
+          <div class="field"><label>Selected test</label><input id="testName" readonly></div>
+          <div class="field"><label>Test cost</label><input id="testPrice" readonly></div>
+          <div class="field"><label>Patient name</label><input value="Vinod Kumar"></div>
+          <div class="field"><label>Mobile number</label><input value="+91 98765 43210"></div>
+          <div class="field"><label>Preferred date</label><select><option>24 June 2026</option><option>25 June 2026</option><option>26 June 2026</option></select></div>
+          <div class="field"><label>Preferred slot</label><select><option>08:00 AM – 09:00 AM</option><option>09:00 AM – 10:00 AM</option><option>05:00 PM – 06:00 PM</option></select></div>
+          <div class="field"><label>Collection type</label><select><option>Visit center</option><option>Home collection</option></select></div>
+          <div class="field"><label>Prescription status</label><select><option>No prescription uploaded</option><option>Prescription available</option></select></div>
+          <div class="field full"><label>Address / notes</label><textarea>B-402, Lake View Residency, Powai, Mumbai</textarea></div>
+          <div class="field full"><button class="btn btn-primary" type="submit">Confirm static booking</button></div>
+        </form>
+      </section>
+
+      <aside class="card">
+        <h3>Booking summary</h3>
+        <div class="summary-item"><span class="muted">Center</span><strong id="summaryCenter"></strong></div>
+        <div class="summary-item"><span class="muted">Test</span><strong id="summaryTest"></strong></div>
+        <div class="summary-item"><span class="muted">Price</span><strong id="summaryPrice"></strong></div>
+        <div class="summary-item"><span class="muted">Turnaround</span><strong id="summaryTat"></strong></div>
+        <div class="summary-item"><span class="muted">Address</span><strong id="summaryAddress"></strong></div>
+        <p class="muted" style="margin-top:18px;">In this static prototype, booking confirmation redirects the reviewer to the admin booking management page.</p>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const centers = [
+      {id:"CTR-001",name:"HealthFirst Diagnostics",location:"Andheri West, Mumbai",address:"SV Road, Near Andheri Station, Mumbai 400058",tests:[{id:"T-101",name:"Complete Blood Count (CBC)",price:350,tat:"12 hours"},{id:"T-102",name:"Thyroid Profile (T3, T4, TSH)",price:650,tat:"24 hours"}]},
+      {id:"CTR-002",name:"CarePath Labs",location:"Powai, Mumbai",address:"Hiranandani Gardens, Powai, Mumbai 400076",tests:[{id:"T-201",name:"Complete Blood Count (CBC)",price:320,tat:"12 hours"},{id:"T-202",name:"Lipid Profile",price:700,tat:"18 hours"},{id:"T-205",name:"Full Body Checkup",price:2899,tat:"36 hours"}]},
+      {id:"CTR-003",name:"MedSure Diagnostic Hub",location:"Vashi, Navi Mumbai",address:"Palm Beach Road, Vashi, Navi Mumbai 400703",tests:[{id:"T-301",name:"Complete Blood Count (CBC)",price:340,tat:"12 hours"},{id:"T-302",name:"Dengue Panel",price:1100,tat:"24 hours"}]}
+    ];
+
+    const params = new URLSearchParams(location.search);
+    const centerId = params.get("center") || "CTR-001";
+    const testId = params.get("test") || "T-101";
+
+    const center = centers.find(c => c.id === centerId) || centers[0];
+    const test = center.tests.find(t => t.id === testId) || center.tests[0];
+
+    document.getElementById("centerName").value = center.name;
+    document.getElementById("centerLocation").value = center.location;
+    document.getElementById("testName").value = test.name;
+    document.getElementById("testPrice").value = `₹${test.price}`;
+    document.getElementById("summaryCenter").textContent = center.name;
+    document.getElementById("summaryTest").textContent = test.name;
+    document.getElementById("summaryPrice").textContent = `₹${test.price}`;
+    document.getElementById("summaryTat").textContent = test.tat;
+    document.getElementById("summaryAddress").textContent = center.address;
+
+    document.getElementById("bookingForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      window.location.href = "admin-bookings.html";
+    });
+
+    const toggle = document.getElementById("themeToggle");
+    let d = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', d);
+    toggle.textContent = d === 'dark' ? 'Light mode' : 'Dark mode';
+    toggle.onclick = () => {
+      d = d === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', d);
+      toggle.textContent = d === 'dark' ? 'Light mode' : 'Dark mode';
+    };
+  </script>
+</body>
+</html>

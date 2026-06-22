@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landing Page - MediAxis Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root,[data-theme="light"]{
+      --bg:#f7f6f2;--surface:#f9f8f5;--surface-2:#f3f0ec;--text:#28251d;--muted:#66645f;--border:#d4d1ca;
+      --primary:#01696f;--primary-soft:#cedcd8;--success:#437a22;--warning:#964219;--radius:16px;--shadow:0 12px 32px rgba(20,20,20,.08);
+      --font-body:'Inter',sans-serif;--font-display:'Instrument Serif',serif;
+    }
+    [data-theme="dark"]{
+      --bg:#171614;--surface:#1c1b19;--surface-2:#242320;--text:#e1dfdb;--muted:#b4b1aa;--border:#393836;
+      --primary:#4f98a3;--primary-soft:#2a393c;--success:#78b652;--warning:#d08a5d;
+    }
+    *{box-sizing:border-box;margin:0;padding:0} body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6}
+    a{text-decoration:none;color:inherit} button{cursor:pointer;border:none} img,svg{display:block;max-width:100%}
+    .container{max-width:1180px;margin:auto;padding:24px}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:12px;background:var(--primary-soft);display:grid;place-items:center;color:var(--primary)}
+    .brand h1{font-size:1.05rem;font-weight:800}.brand p{font-size:.85rem;color:var(--muted)}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}.nav a,.nav button{padding:12px 16px;border:1px solid var(--border);border-radius:999px;background:var(--surface);min-height:44px}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;padding:28px 0}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero-copy,.hero-side,.center-card{padding:24px}
+    .eyebrow{display:inline-block;background:var(--primary-soft);color:var(--primary);padding:6px 12px;border-radius:999px;font-size:.78rem;font-weight:700;margin-bottom:14px}
+    h2.display{font-family:var(--font-display);font-size:clamp(2rem,4vw,4rem);line-height:.95;margin-bottom:16px}
+    .muted{color:var(--muted)}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .btn{padding:14px 18px;border-radius:999px;font-weight:700;min-height:46px}
+    .btn-primary{background:var(--primary);color:white}.btn-secondary{background:var(--surface-2);border:1px solid var(--border)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .section-title{display:flex;justify-content:space-between;align-items:end;margin:20px 0 14px}
+    .section-title h3{font-size:1.4rem}.test-list{display:grid;gap:12px;margin-top:16px}
+    .test-item{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:14px}
+    .badge{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:.76rem;font-weight:700}
+    .badge.primary{background:var(--primary-soft);color:var(--primary)} .badge.success{background:rgba(67,122,34,.12);color:var(--success)} .badge.warning{background:rgba(150,66,25,.12);color:var(--warning)}
+    .meta{display:grid;gap:6px;color:var(--muted);font-size:.95rem;margin:14px 0}
+    .price{font-weight:800}
+    @media (max-width:980px){.hero,.grid-3{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v10M7 12h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <h1>MediAxis Labs</h1>
+        <p>Diagnostic platform demo</p>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Landing</a>
+      <a href="booking-page.html">Booking</a>
+      <a href="reports-page.html">Reports</a>
+      <a href="admin-dashboard.html">Admin Dashboard</a>
+      <button id="themeToggle">Theme</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card hero-copy">
+        <div class="eyebrow">Trusted diagnostic booking</div>
+        <h2 class="display">Compare diagnostic centers and book the right test in minutes.</h2>
+        <p class="muted">This static website demo shows how customers can browse centers, review center-wise tests and pricing, and continue to a prefilled booking experience.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="booking-page.html?center=CTR-001&test=T-101">Book CBC now</a>
+          <a class="btn btn-secondary" href="admin-dashboard.html">View admin panel</a>
+        </div>
+      </div>
+
+      <div class="card hero-side">
+        <div class="section-title"><h3>Popular tests</h3></div>
+        <div class="test-list">
+          <div class="test-item"><div><strong>Complete Blood Count (CBC)</strong><div class="muted">All centers</div></div><div class="price">₹320–₹350</div></div>
+          <div class="test-item"><div><strong>Thyroid Profile</strong><div class="muted">Andheri and Vashi</div></div><div class="price">₹650–₹690</div></div>
+          <div class="test-item"><div><strong>Full Body Checkup</strong><div class="muted">Powai and Vashi</div></div><div class="price">₹2,499–₹2,899</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <div>
+          <h3>Diagnostic centers</h3>
+          <p class="muted">Open a center, inspect tests, and book from a specific test row.</p>
+        </div>
+      </div>
+      <div class="grid-3" id="centersGrid"></div>
+    </section>
+  </main>
+
+  <script>
+    const centers = [
+      {
+        id:"CTR-001",name:"HealthFirst Diagnostics",location:"Andheri West, Mumbai",address:"SV Road, Near Andheri Station, Mumbai 400058",hours:"7:00 AM – 9:00 PM",homeCollection:true,
+        tests:[
+          {id:"T-101",name:"Complete Blood Count (CBC)",price:350,category:"Hematology",tat:"12 hours"},
+          {id:"T-102",name:"Thyroid Profile (T3, T4, TSH)",price:650,category:"Hormone",tat:"24 hours"},
+          {id:"T-103",name:"Vitamin D",price:1200,category:"Wellness",tat:"24 hours"}
+        ]
+      },
+      {
+        id:"CTR-002",name:"CarePath Labs",location:"Powai, Mumbai",address:"Hiranandani Gardens, Powai, Mumbai 400076",hours:"6:30 AM – 8:30 PM",homeCollection:true,
+        tests:[
+          {id:"T-201",name:"Complete Blood Count (CBC)",price:320,category:"Hematology",tat:"12 hours"},
+          {id:"T-202",name:"Lipid Profile",price:700,category:"Cardiac Risk",tat:"18 hours"},
+          {id:"T-205",name:"Full Body Checkup",price:2899,category:"Preventive",tat:"36 hours"}
+        ]
+      },
+      {
+        id:"CTR-003",name:"MedSure Diagnostic Hub",location:"Vashi, Navi Mumbai",address:"Palm Beach Road, Vashi, Navi Mumbai 400703",hours:"7:30 AM – 8:00 PM",homeCollection:false,
+        tests:[
+          {id:"T-301",name:"Complete Blood Count (CBC)",price:340,category:"Hematology",tat:"12 hours"},
+          {id:"T-302",name:"Dengue Panel",price:1100,category:"Infectious Disease",tat:"24 hours"},
+          {id:"T-303",name:"Full Body Checkup",price:2499,category:"Preventive",tat:"36 hours"}
+        ]
+      }
+    ];
+
+    document.getElementById("centersGrid").innerHTML = centers.map(center => `
+      <article class="card center-card">
+        <span class="badge primary">${center.id}</span>
+        <h3 style="margin-top:12px;">${center.name}</h3>
+        <div class="meta">
+          <div><strong>Location:</strong> ${center.location}</div>
+          <div><strong>Address:</strong> ${center.address}</div>
+          <div><strong>Hours:</strong> ${center.hours}</div>
+          <div><strong>Collection:</strong> ${center.homeCollection ? 'Home collection available' : 'Visit center only'}</div>
+        </div>
+        <div class="test-list">
+          ${center.tests.map(test => `
+            <div class="test-item">
+              <div>
+                <strong>${test.name}</strong>
+                <div class="muted">${test.category} · ${test.tat}</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="price">₹${test.price}</div>
+                <a class="btn btn-secondary" style="display:inline-flex;margin-top:8px;padding:10px 14px;" href="booking-page.html?center=${center.id}&test=${test.id}">Book</a>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      </article>
+    `).join("");
+
+    const toggle = document.getElementById("themeToggle");
+    let d = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', d);
+    toggle.textContent = d === 'dark' ? 'Light mode' : 'Dark mode';
+    toggle.onclick = () => {
+      d = d === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', d);
+      toggle.textContent = d === 'dark' ? 'Light mode' : 'Dark mode';
+    };
+  </script>
+</body>
+</html>

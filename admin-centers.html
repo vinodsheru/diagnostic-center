@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Centers - MediAxis Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root,[data-theme="light"]{--bg:#f7f6f2;--surface:#f9f8f5;--surface-2:#f3f0ec;--text:#28251d;--muted:#66645f;--border:#d4d1ca;--primary:#01696f;--soft:#cedcd8;--success:#437a22;--warning:#964219;--font-body:'Inter',sans-serif;--font-display:'Instrument Serif',serif}
+    [data-theme="dark"]{--bg:#171614;--surface:#1c1b19;--surface-2:#242320;--text:#e1dfdb;--muted:#b4b1aa;--border:#393836;--primary:#4f98a3;--soft:#2a393c;--success:#78b652;--warning:#d08a5d}
+    *{box-sizing:border-box;margin:0;padding:0} body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6}
+    .container{max-width:1180px;margin:auto;padding:24px}
+    .topbar{display:flex;justify-content:space-between;gap:12px;padding:18px 24px;border-bottom:1px solid var(--border)}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}.nav a,.nav button{padding:12px 16px;border:1px solid var(--border);border-radius:999px;background:var(--surface);min-height:44px;text-decoration:none;color:inherit}
+    h1{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);line-height:.95;margin:22px 0 8px}.muted{color:var(--muted)}
+    .toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;min-height:44px;font-weight:700;text-decoration:none;color:inherit;border:1px solid var(--border);background:var(--surface)}
+    .btn-primary{background:var(--primary);border-color:var(--primary);color:#fff}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px}
+    .badge{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:.76rem;font-weight:700}
+    .primary{background:var(--soft);color:var(--primary)} .success{background:rgba(67,122,34,.12);color:var(--success)} .warning{background:rgba(150,66,25,.12);color:var(--warning)}
+    .meta{display:grid;gap:8px;margin:14px 0;color:var(--muted)}
+    .row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+    @media (max-width:980px){.grid-3{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-bookings.html">Bookings</a>
+      <a href="admin-users.html">Users</a>
+      <a href="admin-centers.html">Centers</a>
+      <a href="admin-tests.html">Tests</a>
+      <a href="admin-reports.html">Reports</a>
+    </nav>
+    <button id="themeToggle">Theme</button>
+  </header>
+
+  <main class="container">
+    <h1>Diagnostic centers</h1>
+    <p class="muted">Manage center details, locations, bookings, collection capability, and report activity.</p>
+
+    <div class="toolbar">
+      <div class="muted">3 active centers in this demo</div>
+      <button class="btn btn-primary">Add diagnostic center</button>
+    </div>
+
+    <div class="grid-3">
+      <article class="card">
+        <span class="badge primary">CTR-001</span>
+        <h3 style="margin-top:12px;">HealthFirst Diagnostics</h3>
+        <div class="meta">
+          <div><strong>Location:</strong> Andheri West, Mumbai</div>
+          <div><strong>Address:</strong> SV Road, Near Andheri Station, Mumbai 400058</div>
+          <div><strong>Hours:</strong> 7:00 AM – 9:00 PM</div>
+        </div>
+        <div class="row"><span>Bookings</span><strong>2</strong></div>
+        <div class="row"><span>Reports</span><strong>1</strong></div>
+        <div class="row"><span>Tests listed</span><strong>4</strong></div>
+        <div class="row"><span>Collection</span><span class="badge success">Home collection</span></div>
+      </article>
+
+      <article class="card">
+        <span class="badge primary">CTR-002</span>
+        <h3 style="margin-top:12px;">CarePath Labs</h3>
+        <div class="meta">
+          <div><strong>Location:</strong> Powai, Mumbai</div>
+          <div><strong>Address:</strong> Hiranandani Gardens, Powai, Mumbai 400076</div>
+          <div><strong>Hours:</strong> 6:30 AM – 8:30 PM</div>
+        </div>
+        <div class="row"><span>Bookings</span><strong>2</strong></div>
+        <div class="row"><span>Reports</span><strong>1</strong></div>
+        <div class="row"><span>Tests listed</span><strong>5</strong></div>
+        <div class="row"><span>Collection</span><span class="badge success">Home collection</span></div>
+      </article>
+
+      <article class="card">
+        <span class="badge primary">CTR-003</span>
+        <h3 style="margin-top:12px;">MedSure Diagnostic Hub</h3>
+        <div class="meta">
+          <div><strong>Location:</strong> Vashi, Navi Mumbai</div>
+          <div><strong>Address:</strong> Palm Beach Road, Vashi, Navi Mumbai 400703</div>
+          <div><strong>Hours:</strong> 7:30 AM – 8:00 PM</div>
+        </div>
+        <div class="row"><span>Bookings</span><strong>2</strong></div>
+        <div class="row"><span>Reports</span><strong>1</strong></div>
+        <div class="row"><span>Tests listed</span><strong>5</strong></div>
+        <div class="row"><span>Collection</span><span class="badge warning">Visit center only</span></div>
+      </article>
+    </div>
+  </main>
+
+  <script>
+    const toggle=document.getElementById("themeToggle");
+    let d=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+    document.documentElement.setAttribute('data-theme',d);
+    toggle.textContent=d==='dark'?'Light mode':'Dark mode';
+    toggle.onclick=()=>{d=d==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',d);toggle.textContent=d==='dark'?'Light mode':'Dark mode';};
+  </script>
+</body>
+</html>
